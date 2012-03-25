@@ -3,7 +3,7 @@
  */
 public with sharing class TwilioMessageController {
 
-        // The who
+	// The who
     public String whoType { get; set; }
     public String whoId { get; set; }
     
@@ -12,7 +12,7 @@ public with sharing class TwilioMessageController {
     public String messageBody { get; set; }
     public Set<String> sendToPhones { get; set; }
 
-        // Lead and Phone Flags
+	// Lead and Phone Flags
     public Lead lead { get; set; }
     public Boolean leadPhone { get; set; }
     public Boolean leadMobile { get; set; }
@@ -24,7 +24,7 @@ public with sharing class TwilioMessageController {
     public Boolean contactHome { get; set; }
     public Boolean contactOther { get; set; }
 
-        // Constructor - figures out who and initializes the what
+	// Constructor - figures out who and initializes the what
     public TwilioMessageController() {
         
         // Get the page parameters.  Who Type and the Who Id (yes, I could check for '00Q' and '003', but, come on...)
@@ -46,11 +46,11 @@ public with sharing class TwilioMessageController {
             ApexPages.AddMessage( new ApexPages.Message( ApexPages.Severity.ERROR, 'Failed to set the contact information.  ERROR: ' + e.getMessage()));
         }
 
-                // Init
+		// Init
         initialize();
     }
     
-        //  Set the defaults
+	//  Set the defaults
     private void initialize() {
         messageType = 'Voice';
         messageBody = '';
@@ -66,35 +66,41 @@ public with sharing class TwilioMessageController {
         sendToPhones = new Set<String>();
     }
 
-        // Build the set of Phones to send the message to
-        private void buildPhoneSet() {
+	// Build the set of Phones to send the message to
+	private void buildPhoneSet() {
         sendToPhones = new Set<String>();
 
-                if ( leadPhone ) { sendToPhones.add( lead.Phone); }             
-                if ( leadMobile ) { sendToPhones.add( lead.MobilePhone); }
-                
-                if ( contactPhone) { sendToPhones.add( contact.Phone); }
-                if ( contactMobile) { sendToPhones.add( contact.MobilePhone); }
-                if ( contactHome) { sendToPhones.add( contact.HomePhone); }
-                if ( contactOther) { sendToPhones.add( contact.OtherPhone); }
-        }
+		if ( leadPhone ) { sendToPhones.add( lead.Phone); }		
+		if ( leadMobile ) { sendToPhones.add( lead.MobilePhone); }
+		
+		if ( contactPhone) { sendToPhones.add( contact.Phone); }
+		if ( contactMobile) { sendToPhones.add( contact.MobilePhone); }
+		if ( contactHome) { sendToPhones.add( contact.HomePhone); }
+		if ( contactOther) { sendToPhones.add( contact.OtherPhone); }
+	}
 
-        // Clear/Reset
+	// Clear/Reset
     public PageReference onClear() {
         initialize();
         return null;
     }
 
-        // Send the Message
+	// Send the Message
     public PageReference onSend() {
-        
-        buildPhoneSet();
+    	
+    	buildPhoneSet();
 
-                // Make sure there are phone numbers 
-                if ( sendToPhones.size() == 0 ) {
-                        ApexPages.AddMessage( new ApexPages.Message( ApexPages.Severity.WARNING, 'No phone numbers selected'));
-                        return null;
-                }
+		// Make sure there are phone numbers 
+		if ( sendToPhones.size() == 0 ) {
+			ApexPages.AddMessage( new ApexPages.Message( ApexPages.Severity.WARNING, 'No phone numbers selected.  No message sent.'));
+			return null;
+		}
+		
+		// Make sure the message body has something in it
+		if ( messageBody.length() == 0 ) {
+			ApexPages.AddMessage( new ApexPages.Message( ApexPages.Severity.WARNING, 'Message is empty.  No message sent.'));
+			return null;
+		}
 
         // Create the call record and add it to the list
         Task t = new Task();
@@ -107,15 +113,15 @@ public with sharing class TwilioMessageController {
         // Insert task here
         insert t;
 
-                // Check the type of message, then send.        
-        if ( messageType == 'Voice') {
-                TwilioMessageHelper.sendVoiceCall( whoId, sendToPhones, t.id);
-        } else {
-                        TwilioMessageHelper.sendSMSMessage( whoId, sendToPhones, messageBody);
-        }
-        
-        ApexPages.AddMessage( new ApexPages.Message( ApexPages.Severity.INFO, 'Twilio ' + messageType + ' Message has been sent.'));
-        
+		// Check the type of message, then send.    	
+    	if ( messageType == 'Voice') {
+    		TwilioMessageHelper.sendVoiceCall( whoId, sendToPhones, t.id);
+    	} else {
+			TwilioMessageHelper.sendSMSMessage( whoId, sendToPhones, messageBody);
+    	}
+    	
+    	ApexPages.AddMessage( new ApexPages.Message( ApexPages.Severity.INFO, 'Twilio ' + messageType + ' Message has been sent.'));
+    	
         return null;
     }
 
