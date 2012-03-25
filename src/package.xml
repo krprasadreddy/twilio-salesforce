@@ -21,6 +21,9 @@
         <members>TwilioIncomingPhoneNumber</members>
         <members>TwilioIncomingPhoneNumberList</members>
         <members>TwilioIterator</members>
+        <members>TwilioMessageController</members>
+        <members>TwilioMessageHelper</members>
+        <members>TwilioMessageVoiceController</members>
         <members>TwilioNotification</members>
         <members>TwilioNotificationList</members>
         <members>TwilioOutgoingCallerId</members>
@@ -59,12 +62,23 @@
         <name>ApexClass</name>
     </types>
     <types>
-        <members>*</members>
+        <members>TwilioMessage</members>
+        <members>TwilioMessageVoice</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
+        <members>Contact</members>
+        <members>Lead</members>
+        <members>TwilioConfig__c</members>
         <name>CustomObject</name>
     </types>
     <types>
         <members>Twilio</members>
         <name>RemoteSiteSetting</name>
+    </types>
+    <types>
+        <members>TwilioLogo</members>
+        <name>StaticResource</name>
     </types>
     <version>23.0</version>
 </Package>
