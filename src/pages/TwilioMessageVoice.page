@@ -1,0 +1,8 @@
+<apex:page contentType="text/xml" sidebar="false" showheader="false" controller="TwilioMessageVoiceController">
+    <Response>
+        <Say>
+            {!message}
+        </Say>
+        <Hangup />
+    </Response>
+</apex:page>

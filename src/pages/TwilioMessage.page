@@ -1,0 +1,105 @@
+<apex:page controller="TwilioMessageController" tabStyle="Account">
+
+    <apex:outputLink value="http://www.twilio.com">
+        <apex:image url="{!$Resource.TwilioLogo}" />
+    </apex:outputLink>
+
+    <apex:pageMessages />
+    
+    <apex:form >
+        <apex:pageblock >
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton action="{!onSend}" value="Send Twilio Message" />
+                <apex:commandButton action="{!onClear}" value="Clear" />
+            </apex:pageBlockButtons>
+            
+            <apex:pageBlockSection title="Lead" rendered="{! whoType == 'Lead'}" collapsible="false" columns="1">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel >Name</apex:outputLabel>
+                    <apex:outputPanel >
+                        <apex:outputLink value="/{!lead.Id}">
+                            <apex:outputField value="{!lead.Name}"/>
+                        </apex:outputLink>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem rendered="{! lead.Phone != null }">
+                    <apex:outputLabel >Phone</apex:outputLabel>
+                    <apex:outputPanel >
+                        <apex:inputCheckbox value="{!leadPhone}" />
+                        <apex:outputField value="{!lead.Phone}"/>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem rendered="{! lead.MobilePhone != null }">
+                    <apex:outputLabel >Mobile</apex:outputLabel>
+                    <apex:outputPanel >
+                        <apex:inputCheckbox value="{!leadMobile}" />
+                        <apex:outputField value="{!lead.MobilePhone}"/> 
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+
+            <apex:pageBlockSection title="Contact" rendered="{! whoType == 'Contact'}" collapsible="false" columns="1">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel >Name</apex:outputLabel>
+                    <apex:outputPanel >
+                        <apex:outputLink value="/{!contact.Id}">
+                            <apex:outputField value="{!contact.Name}"/>
+                        </apex:outputLink>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                
+
+                <apex:pageBlockSectionItem rendered="{! contact.Phone != null }">
+                    <apex:outputLabel >Phone</apex:outputLabel>
+                    <apex:outputPanel >
+                        <apex:inputCheckbox value="{!contactPhone}" />
+                        <apex:outputField value="{!contact.Phone}"/>&nbsp;
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem rendered="{! contact.MobilePhone != null }">
+                    <apex:outputLabel >Mobile</apex:outputLabel>
+                    <apex:outputPanel >
+                        <apex:inputCheckbox value="{!contactMobile}" />
+                        <apex:outputField value="{!contact.MobilePhone}"/>&nbsp;
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem rendered="{! contact.HomePhone != null }">
+                    <apex:outputLabel >Home</apex:outputLabel>
+                    <apex:outputPanel >
+                        <apex:inputCheckbox value="{!contactHome}" />
+                        <apex:outputField value="{!contact.HomePhone}"/>&nbsp;
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem rendered="{! contact.OtherPhone != null }">
+                    <apex:outputLabel >Other</apex:outputLabel>
+                    <apex:outputPanel >
+                        <apex:inputCheckbox value="{!contactOther}" />
+                        <apex:outputField value="{!contact.OtherPhone}"/>&nbsp;
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection collapsible="false" columns="1">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel >Message Type</apex:outputLabel>
+                    <apex:selectRadio value="{!messageType}">
+                        <apex:selectOption itemLabel="Voice" itemValue="Voice" />
+                        <apex:selectOption itemLabel="SMS" itemValue="SMS" />
+                    </apex:selectRadio>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel >Message</apex:outputLabel>
+                    <apex:inputTextarea value="{!messageBody}" cols="100" />
+                </apex:pageBlockSectionItem>
+
+            </apex:pageBlockSection>
+        </apex:pageblock>
+    </apex:form>
+
+</apex:page>
