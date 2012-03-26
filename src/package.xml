@@ -22,6 +22,7 @@
         <members>TwilioIncomingPhoneNumberList</members>
         <members>TwilioIterator</members>
         <members>TwilioMessageController</members>
+        <members>TwilioMessageControllerTest</members>
         <members>TwilioMessageHelper</members>
         <members>TwilioMessageVoiceController</members>
         <members>TwilioNotification</members>

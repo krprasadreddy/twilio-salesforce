@@ -32,5 +32,21 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <fields>
+        <fullName>DefaultFrom__c</fullName>
+        <description>The default From Number for your Twilio Messages</description>
+        <externalId>false</externalId>
+        <label>DefaultFrom</label>
+        <required>false</required>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>ForceSiteUrl__c</fullName>
+        <description>The base url for your Force.com Site that will respond with TwiML</description>
+        <externalId>false</externalId>
+        <label>ForceSiteUrl</label>
+        <required>false</required>
+        <type>Url</type>
+    </fields>
     <label>Twilio Config</label>
 </CustomObject>
