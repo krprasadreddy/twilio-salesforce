@@ -8,8 +8,12 @@ public with sharing class TwilioMessageVoiceController {
     
     public TwilioMessageVoiceController() {
         String taskId = ApexPages.currentPage().getParameters().get( 'taskId');
-        message = [select Description 
-                     from Task 
-                    where Id = :taskId].Description;
+        try {
+	        message = [select Description 
+	                     from Task 
+	                    where Id = :taskId].Description;
+        } catch ( Exception e) {
+        	message = 'Could not get message associated with this request.';
+        }
     }
 }
