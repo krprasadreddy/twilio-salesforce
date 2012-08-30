@@ -1,0 +1,5 @@
+<apex:page contentType="text/xml" sidebar="false" showheader="false" controller="ConfHostSMSController" action="{!init}">
+    <Response>
+        <Sms>{!responseBody}</Sms> 
+    </Response>
+</apex:page>

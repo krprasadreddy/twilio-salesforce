@@ -1,0 +1,9 @@
+<apex:page contentType="text/xml" sidebar="false" showheader="false" >
+    <Response>
+        <Say voice="man">The host has not yet arrived.  Please hold.</Say>
+        <Play>http://com.twilio.music.guitars.s3.amazonaws.com/Pitx_-_A_Thought.mp3</Play>
+        <Play>http://com.twilio.music.guitars.s3.amazonaws.com/Pitx_-_Long_Winter.mp3</Play>
+        <Say voice="man">Thank you for holding, but the host has still not joined.  Good Bye.</Say>
+        <Hangup/>
+    </Response>
+</apex:page>

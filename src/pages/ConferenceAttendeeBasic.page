@@ -1,0 +1,9 @@
+<apex:page contentType="text/xml" sidebar="false" showheader="false" controller="ConferenceController">
+    <Response>
+        <Say voice="man">Welcome to the {!conferenceName} Conference Call</Say>
+        <Dial>
+            <Conference startConferenceOnEnter="false" endConferenceOnExit="false"
+               waitUrl="/ConferenceHold">{!conferenceName}</Conference>
+        </Dial>
+    </Response>
+</apex:page>

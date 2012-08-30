@@ -1,0 +1,3 @@
+<apex:page contentType="text/xml" sidebar="false" showheader="false" controller="ConferenceAttendeeController" action="{!init}" >
+    {!callAction}
+</apex:page>

@@ -1,0 +1,23 @@
+<apex:page controller="OnCallController" contentType="text/xml" sidebar="false" showheader="false" cache="false">
+    <Response>
+        <apex:outputPanel rendered="{! NOT( ISNULL( onCallUsers)) }" layout="none">
+            <Say voice="Man">
+                On Call System.
+            </Say>
+            <Dial>
+                <apex:repeat value="{!onCallUsers}" var="u">
+                    <Number>{!u.MobilePhone}</Number>
+                </apex:repeat>
+            </Dial>
+        </apex:outputPanel>
+
+        <apex:outputPanel rendered="{! ISNULL( onCallUsers) }" layout="none">
+            <Say voice="Man">
+                There are no users found for the group name you have provided.
+            </Say>
+        </apex:outputPanel>
+        
+
+    </Response>
+
+</apex:page>
