@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+        <members>ConfHostSMSController</members>
+        <members>ConferenceAttendeeController</members>
+        <members>ConferenceController</members>
+        <members>ConferenceHelper</members>
+        <members>OnCallController</members>
+        <members>TCall</members>
         <members>TwilioAPI</members>
         <members>TwilioAccount</members>
         <members>TwilioAccountList</members>
@@ -63,14 +69,20 @@
         <name>ApexClass</name>
     </types>
     <types>
+        <members>ConferenceAttendee</members>
+        <members>ConferenceAttendeeBasic</members>
+        <members>ConferenceHold</members>
+        <members>ConferenceHost</members>
+        <members>ConferenceHostSMS</members>
+        <members>OnCall</members>
         <members>TwilioMessage</members>
         <members>TwilioMessageVoice</members>
         <name>ApexPage</name>
     </types>
     <types>
+        <members>*</members>
         <members>Contact</members>
         <members>Lead</members>
-        <members>TwilioConfig__c</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -81,5 +93,5 @@
         <members>TwilioLogo</members>
         <name>StaticResource</name>
     </types>
-    <version>23.0</version>
+    <version>25.0</version>
 </Package>
