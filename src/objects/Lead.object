@@ -291,12 +291,6 @@
         <label>All Open Leads</label>
     </listViews>
     <listViews>
-        <fullName>InternationalLeads</fullName>
-        <filterScope>Queue</filterScope>
-        <label>International Leads</label>
-        <queue>International Leads</queue>
-    </listViews>
-    <listViews>
         <fullName>MyUnreadLeads</fullName>
         <filterScope>Mine</filterScope>
         <filters>
@@ -315,12 +309,6 @@
             <value>TODAY</value>
         </filters>
         <label>Today&apos;s Leads</label>
-    </listViews>
-    <listViews>
-        <fullName>USLeads</fullName>
-        <filterScope>Queue</filterScope>
-        <label>US Leads</label>
-        <queue>US Leads</queue>
     </listViews>
     <listViews>
         <fullName>ViewCustom1</fullName>
